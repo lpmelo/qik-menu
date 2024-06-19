@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveCompanyData } from "../features/company/companySlice";
+import { saveWebSettings } from "../features/webSettings/webSettingsSlice";
 import useCompanyApi from "../features/company/companyApi";
 import AppBar from "../components/AppBar/AppBar";
-import { saveWebSettings } from "../features/webSettings/webSettingsSlice";
 
 const App = () => {
   const dispatch = useDispatch();
