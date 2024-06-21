@@ -3,12 +3,7 @@ import axios from "axios";
 const useCompanyApi = () => {
   const getCompanyById = async (id) => {
     try {
-      const response = await axios.get(`/venue/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
+      const response = await axios.get(`/venue/${id}`);
       return response.data;
     } catch (error) {
       return error;

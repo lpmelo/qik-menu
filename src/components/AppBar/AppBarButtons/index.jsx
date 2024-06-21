@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const AppBarButtons = () => {
-  const [currentTab, setCurrentTab] = useState("/menu");
+  const [currentTab, setCurrentTab] = useState("/home");
   const { backgroundColour } = useSelector((state) => state.webSettings);
 
   useEffect(() => {
@@ -15,8 +15,8 @@ const AppBarButtons = () => {
     <StyledTabs bgColor={backgroundColour} value={currentTab}>
       <StyledTab
         label={<Typography>Menu</Typography>}
-        value="/menu"
-        to="/menu"
+        value="/home"
+        to="/home"
       />
       <StyledTab
         label={<Typography>Entrar</Typography>}

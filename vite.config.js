@@ -11,6 +11,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      "/menu": {
+        target: "https://cdn-dev.preoday.com/challenge",
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });

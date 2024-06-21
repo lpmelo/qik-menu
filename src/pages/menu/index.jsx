@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
+import { useGetAllMenusQuery } from "../../features/challengeApi/challengeApi";
 import AppBar from "../../components/AppBar";
 import {
   StyledScreenContainer,
@@ -9,11 +10,14 @@ import {
   StyledSearchBox,
   StyledMenuContentContainer,
 } from "./style";
+import CardHeaderCarousel from "./components/CardHeaderCarousel";
 
 const Menu = () => {
   const { backgroundColour, primaryColour } = useSelector(
     (state) => state.webSettings
   );
+
+  const { data } = useGetAllMenusQuery();
 
   return (
     <StyledScreenContainer
@@ -33,7 +37,7 @@ const Menu = () => {
         <StyledMenuContentContainer container item xs={12} spacing={3}>
           <Grid item xs={8}>
             <Card>
-              <CardHeader></CardHeader>
+              <CardHeaderCarousel sections={data?.sections} />
               <CardContent></CardContent>
             </Card>
           </Grid>

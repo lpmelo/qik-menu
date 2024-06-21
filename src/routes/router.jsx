@@ -5,7 +5,7 @@ import AuthGuardian from "../components/AuthGuardian";
 const defaultRoutes = [
   { path: "*", element: <AuthGuardian /> },
   {
-    path: "/menu",
+    path: "/home",
     element: <Menu />,
   },
 ];
