@@ -1,6 +1,13 @@
 import { forwardRef } from "react";
-import { Box, styled } from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import PropTypes from "prop-types";
+
+const StyledAppBarContainerRoot = styled(Grid)(() => {
+  return {
+    height: "fit-content",
+    width: "100%",
+  };
+});
 
 const StyledBoxRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette } = theme;
@@ -32,6 +39,10 @@ const StyledHeaderRoot = styled(Box)(({ theme, ownerState }) => {
   };
 });
 
+const StyledAppBarContainer = forwardRef(({ ...rest }, ref) => (
+  <StyledAppBarContainerRoot ref={ref} {...rest} />
+));
+
 const StyledBox = forwardRef(({ bgColor, ...rest }, ref) => (
   <StyledBoxRoot ref={ref} ownerState={{ bgColor }} {...rest} />
 ));
@@ -39,6 +50,8 @@ const StyledBox = forwardRef(({ bgColor, ...rest }, ref) => (
 const StyledHeader = forwardRef(({ bannerImage, bgColor, ...rest }, ref) => (
   <StyledHeaderRoot ref={ref} ownerState={{ bannerImage, bgColor }} {...rest} />
 ));
+
+StyledAppBarContainer.displayName = "StyledAppBarContainer";
 
 StyledHeader.displayName = "StyledHeader";
 
@@ -53,4 +66,4 @@ StyledBox.propTypes = {
   bgColor: PropTypes.string,
 };
 
-export { StyledBox, StyledHeader };
+export { StyledBox, StyledHeader, StyledAppBarContainer };

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { StyledBox, StyledHeader } from "./style";
 import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
 import AppBarButtons from "./AppBarButtons";
+import { StyledBox, StyledHeader, StyledAppBarContainer } from "./style";
 
 const AppBar = () => {
   const { navBackgroundColour, bannerImage } = useSelector(
@@ -11,11 +11,13 @@ const AppBar = () => {
 
   return (
     <>
-      <StyledBox bgColor={navBackgroundColour}>
-        {isMobile ? <></> : <AppBarButtons />}
-      </StyledBox>
+      <StyledAppBarContainer item xs={12}>
+        <StyledBox bgColor={navBackgroundColour}>
+          {isMobile ? <></> : <AppBarButtons />}
+        </StyledBox>
 
-      <StyledHeader bannerImage={bannerImage} bgColor={navBackgroundColour} />
+        <StyledHeader bannerImage={bannerImage} bgColor={navBackgroundColour} />
+      </StyledAppBarContainer>
     </>
   );
 };
