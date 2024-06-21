@@ -1,10 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../app/App";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-]);
+import Menu from "../pages/menu/index";
+import AuthGuardian from "../components/AuthGuardian";
 
-export default router;
+const defaultRoutes = [
+  { path: "*", element: <AuthGuardian /> },
+  {
+    path: "/menu",
+    element: <Menu />,
+  },
+];
+
+const returnRoutes = () => {
+  const protectedRoutes = defaultRoutes.map((route) => {
+    if (route.path != "/") {
+      route = {
+        ...route,
+        element: <AuthGuardian>{route.element}</AuthGuardian>,
+      };
+    }
+    return route;
+  });
+
+  return protectedRoutes;
+};
+
+const router = createBrowserRouter(returnRoutes());
+
+export { router, defaultRoutes };
