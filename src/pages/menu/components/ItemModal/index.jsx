@@ -54,9 +54,11 @@ const ItemModal = ({ open, onClose, selectedItem, bgColor, primaryColor }) => {
       name: selectedItem.name,
       quantity: counter,
       price: selectedItem.price * counter,
+      unitPrice: selectedItem.price,
     };
 
     dispatch(addItemOnBasket(basketItem));
+    handleCloseModal();
   };
 
   return (

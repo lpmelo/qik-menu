@@ -94,10 +94,45 @@ StyledTypography.propTypes = {
   lightColor: PropType.bool,
 };
 
+const StyledBadgeRoot = styled(Box)(({ theme, ownerState }) => {
+  const { palette } = theme;
+  const { primaryColor } = ownerState;
+
+  return {
+    width: "18px",
+    height: "18px",
+    color: "#ffffff",
+    textAlign: "center",
+    borderRadius: "5px",
+    fontFamily: "Roboto",
+    fontSize: "14px",
+    marginRight: "4px",
+    backgroundColor: primaryColor ? primaryColor : palette.primary.main,
+  };
+});
+
+const StyledBadge = forwardRef(({ primaryColor, ...rest }, ref) => (
+  <StyledBadgeRoot ref={ref} ownerState={{ primaryColor }} {...rest} />
+));
+
+StyledBadge.displayName = "StyledBadge";
+
+StyledBadge.propTypes = {
+  primaryColor: PropType.string,
+};
+
+const StyledItemInfoHeader = styled(Box)(() => ({
+  display: "flex",
+  width: "100%",
+  alignItems: "center",
+}));
+
 export {
   StyledItemBox,
   StyledItemDetailsBox,
   StyledItemImageBox,
   StyledItemInfoBox,
   StyledTypography,
+  StyledBadge,
+  StyledItemInfoHeader,
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Grid, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
@@ -14,16 +14,20 @@ import {
   StyledSearchBox,
   StyledMenuContentContainer,
 } from "./style";
+import BasketBox from "./components/BasketBox";
 
 const Menu = () => {
   const { backgroundColour, primaryColour } = useSelector(
     (state) => state.webSettings
   );
 
+  const { basket } = useSelector((state) => state.menu);
+
   const { data } = useGetAllMenusQuery();
 
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [filteredData, setFilteredData] = useState({});
 
   const handleClickItem = (itemInfo) => {
     setSelectedItem(itemInfo);
@@ -33,6 +37,12 @@ const Menu = () => {
   const handleCloseItemModal = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (data) {
+      setFilteredData(data);
+    }
+  }, [data]);
 
   return (
     <StyledScreenContainer
@@ -51,22 +61,29 @@ const Menu = () => {
         </StyledSearchBox>
         <StyledMenuContentContainer container item xs={12} spacing={3}>
           <Grid maxHeight={"100%"} pb={"24px"} item xs={8}>
-            <CardItems data={data} onClickItem={handleClickItem} />
+            <CardItems data={filteredData} onClickItem={handleClickItem} />
           </Grid>
           <Grid item xs={4}>
             <DefaultCard
               cardHeaderProps={{ sx: { backgroundColor: "#F8F9FA" } }}
+              cardContentProps={
+                basket?.items?.length ? { sx: { p: "0px !important" } } : {}
+              }
               typographyProps={{ color: "#464646", fontSize: "24px" }}
               title={"Carrinho"}
             >
-              <Typography
-                fontFamily="Roboto"
-                fontWeight={400}
-                fontSize="16px"
-                color="#464646"
-              >
-                Seu carrinho está vazio
-              </Typography>
+              {basket?.items?.length ? (
+                <BasketBox basket={basket} primaryColor={primaryColour} />
+              ) : (
+                <Typography
+                  fontFamily="Roboto"
+                  fontWeight={400}
+                  fontSize="16px"
+                  color="#464646"
+                >
+                  Seu carrinho está vazio
+                </Typography>
+              )}
             </DefaultCard>
           </Grid>
         </StyledMenuContentContainer>

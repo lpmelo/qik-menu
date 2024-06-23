@@ -7,19 +7,25 @@ import { StyledCard, StyledContentBox } from "./style";
 
 const CardItems = ({ data, isLoading, onClickItem }) => {
   const returnItemsAccordions = () => {
-    return data?.sections.map((section) => (
-      <DefaultAccordion
-        key={section.id}
-        summaryContent={
-          <Typography fontSize={"24px"} fontFamily={"Roboto"} fontWeight={500}>
-            {section.name}
-          </Typography>
-        }
-        detailsContent={
-          <MenuItems menuItems={section.items} onClickItem={onClickItem} />
-        }
-      />
-    ));
+    if (data?.sections?.length) {
+      return data?.sections.map((section) => (
+        <DefaultAccordion
+          key={section.id}
+          summaryContent={
+            <Typography
+              fontSize={"24px"}
+              fontFamily={"Roboto"}
+              fontWeight={500}
+            >
+              {section.name}
+            </Typography>
+          }
+          detailsContent={
+            <MenuItems menuItems={section.items} onClickItem={onClickItem} />
+          }
+        />
+      ));
+    }
   };
 
   return (
