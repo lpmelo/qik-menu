@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Grid, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
@@ -5,6 +6,7 @@ import { useGetAllMenusQuery } from "../../features/challengeApi/challengeApi";
 import AppBar from "../../components/AppBar";
 import CardItems from "./components/CardItems";
 import DefaultCard from "../../components/Card";
+import ItemModal from "./components/ItemModal";
 import {
   StyledScreenContainer,
   StyledContentContainer,
@@ -19,6 +21,18 @@ const Menu = () => {
   );
 
   const { data } = useGetAllMenusQuery();
+
+  const [open, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleClickItem = (itemInfo) => {
+    setSelectedItem(itemInfo);
+    setOpen(true);
+  };
+
+  const handleCloseItemModal = () => {
+    setOpen(false);
+  };
 
   return (
     <StyledScreenContainer
@@ -37,7 +51,7 @@ const Menu = () => {
         </StyledSearchBox>
         <StyledMenuContentContainer container item xs={12} spacing={3}>
           <Grid maxHeight={"100%"} pb={"24px"} item xs={8}>
-            <CardItems data={data} />
+            <CardItems data={data} onClickItem={handleClickItem} />
           </Grid>
           <Grid item xs={4}>
             <DefaultCard
@@ -57,6 +71,13 @@ const Menu = () => {
           </Grid>
         </StyledMenuContentContainer>
       </StyledContentContainer>
+      <ItemModal
+        open={open}
+        onClose={handleCloseItemModal}
+        selectedItem={selectedItem}
+        bgColor={backgroundColour}
+        primaryColor={primaryColour}
+      />
     </StyledScreenContainer>
   );
 };
