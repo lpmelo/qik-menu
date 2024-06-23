@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import PropType from "prop-types";
 import {
   StyledItemBox,
-  StyledCardHeader,
+  StyledContainerHeader,
   StyledItemContainer,
   StyledTypography,
 } from "./style";
@@ -39,7 +39,7 @@ const CardHeaderCarousel = ({ sections }) => {
   }, [sections]);
 
   return (
-    <StyledCardHeader>
+    <StyledContainerHeader>
       {sections?.length ? (
         sections.map((section) => {
           return (
@@ -63,7 +63,7 @@ const CardHeaderCarousel = ({ sections }) => {
       ) : (
         <></>
       )}
-    </StyledCardHeader>
+    </StyledContainerHeader>
   );
 };
 

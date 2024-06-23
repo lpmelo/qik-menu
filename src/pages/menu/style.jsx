@@ -15,10 +15,31 @@ const StyledScreenContainerRoot = styled(Grid)(({ theme, ownerState }) => {
   };
 });
 
+const StyledScreenContainer = forwardRef(({ bgColor, ...rest }, ref) => (
+  <StyledScreenContainerRoot ref={ref} ownerState={{ bgColor }} {...rest} />
+));
+
+StyledScreenContainer.displayName = "StyledScreenContainer";
+
+StyledScreenContainer.propTypes = {
+  bgColor: PropType.string,
+};
+
 const StyledContentContainerRoot = styled(Container)(() => ({
   height: "calc(100% - 202px)",
   paddingBottom: "5px",
 }));
+
+const StyledContentContainer = forwardRef(({ ...rest }, ref) => (
+  <StyledContentContainerRoot ref={ref} {...rest} />
+));
+
+StyledContentContainer.displayName = "StyledContentContainer";
+
+StyledContentContainer.propTypes = {
+  container: PropType.bool,
+  item: PropType.bool,
+};
 
 const StyledSearchBoxRoot = styled(Box)(() => ({
   display: "flex",
@@ -29,6 +50,12 @@ const StyledSearchBoxRoot = styled(Box)(() => ({
   padding: "1px 0px",
   gap: "16px",
 }));
+
+const StyledSearchBox = forwardRef(({ ...rest }, ref) => (
+  <StyledSearchBoxRoot ref={ref} {...rest} />
+));
+
+StyledSearchBox.displayName = "StyledSearchBox";
 
 const StyledIconTextFieldRoot = styled(IconTextField)(
   ({ theme, ownerState }) => {
@@ -64,53 +91,26 @@ const StyledMenuContentContainerRoot = styled(Grid)(() => ({
   paddingRight: "24px",
 }));
 
-const StyledScreenContainer = forwardRef(({ bgColor, ...rest }, ref) => (
-  <StyledScreenContainerRoot ref={ref} ownerState={{ bgColor }} {...rest} />
-));
-
-const StyledContentContainer = forwardRef(({ ...rest }, ref) => (
-  <StyledContentContainerRoot ref={ref} {...rest} />
-));
-
-const StyledSearchBox = forwardRef(({ ...rest }, ref) => (
-  <StyledSearchBoxRoot ref={ref} {...rest} />
-));
-
-const StyledIconTextField = forwardRef(({ primaryColor, ...rest }, ref) => (
-  <StyledIconTextFieldRoot ref={ref} ownerState={{ primaryColor }} {...rest} />
-));
-
 const StyledMenuContentContainer = forwardRef(({ ...rest }, ref) => (
   <StyledMenuContentContainerRoot ref={ref} {...rest} />
 ));
-
-StyledScreenContainer.displayName = "StyledScreenContainer";
-
-StyledScreenContainer.propTypes = {
-  bgColor: PropType.string,
-};
-
-StyledContentContainer.displayName = "StyledContentContainer";
-
-StyledContentContainer.propTypes = {
-  container: PropType.bool,
-  item: PropType.bool,
-};
-
-StyledSearchBox.displayName = "StyledSearchBox";
-
-StyledIconTextField.displayName = "StyledIconTextField";
-
-StyledIconTextField.propTypes = {
-  primaryColor: PropType.string,
-  inputIcon: PropType.object,
-};
 
 StyledMenuContentContainer.displayName = "StyledMenuContentContainer";
 
 StyledMenuContentContainer.propTypes = {
   container: PropType.bool,
   item: PropType.bool,
+};
+
+const StyledIconTextField = forwardRef(({ primaryColor, ...rest }, ref) => (
+  <StyledIconTextFieldRoot ref={ref} ownerState={{ primaryColor }} {...rest} />
+));
+
+StyledIconTextField.displayName = "StyledIconTextField";
+
+StyledIconTextField.propTypes = {
+  primaryColor: PropType.string,
+  inputIcon: PropType.object,
 };
 
 export {

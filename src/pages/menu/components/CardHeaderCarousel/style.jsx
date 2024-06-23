@@ -2,13 +2,15 @@ import { forwardRef } from "react";
 import { Box, Container, Typography, styled } from "@mui/material";
 import PropType from "prop-types";
 
-const StyledCardHeaderRoot = styled(Container)(() => {
-  return { display: "flex", padding: "20px 0px 24px 16px" };
+const StyledContainerHeaderRoot = styled(Container)(() => {
+  return { display: "flex", padding: "20px 0px 24px 16px", maxHeight: "190px" };
 });
 
-const StyledCardHeader = forwardRef(({ ...rest }, ref) => (
-  <StyledCardHeaderRoot ref={ref} {...rest} />
+const StyledContainerHeader = forwardRef(({ ...rest }, ref) => (
+  <StyledContainerHeaderRoot ref={ref} {...rest} />
 ));
+
+StyledContainerHeader.displayName = "StyledContainerHeader";
 
 const StyledItemContainerRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette } = theme;
@@ -35,6 +37,13 @@ const StyledItemContainer = forwardRef(
     />
   )
 );
+
+StyledItemContainer.displayName = "StyledItemContainer";
+
+StyledItemContainer.propTypes = {
+  selected: PropType.bool,
+  primaryColor: PropType.string,
+};
 
 const StyledItemBoxRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette } = theme;
@@ -66,6 +75,14 @@ const StyledItemBox = forwardRef(
   )
 );
 
+StyledItemBox.displayName = "StyledItemBox";
+
+StyledItemBox.propTypes = {
+  bgImage: PropType.string,
+  primaryColor: PropType.string,
+  selected: PropType.bool,
+};
+
 const StyledTypographyRoot = styled(Typography)(({ ownerState }) => {
   const { selected } = ownerState;
   return {
@@ -82,23 +99,6 @@ const StyledTypography = forwardRef(({ selected, ...rest }, ref) => (
   <StyledTypographyRoot ref={ref} ownerState={{ selected }} {...rest} />
 ));
 
-StyledCardHeader.displayName = "StyledCardHeader";
-
-StyledItemContainer.displayName = "StyledItemContainer";
-
-StyledItemContainer.propTypes = {
-  selected: PropType.bool,
-  primaryColor: PropType.string,
-};
-
-StyledItemBox.displayName = "StyledItemBox";
-
-StyledItemBox.propTypes = {
-  bgImage: PropType.string,
-  primaryColor: PropType.string,
-  selected: PropType.bool,
-};
-
 StyledTypography.displayName = "StyledTypography";
 
 StyledTypography.propTypes = {
@@ -106,7 +106,7 @@ StyledTypography.propTypes = {
 };
 
 export {
-  StyledCardHeader,
+  StyledContainerHeader,
   StyledItemContainer,
   StyledItemBox,
   StyledTypography,

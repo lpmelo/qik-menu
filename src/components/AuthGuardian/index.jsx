@@ -7,6 +7,7 @@ import { saveCompanyData } from "../../features/company/companySlice";
 import { saveWebSettings } from "../../features/webSettings/webSettingsSlice";
 import Loader from "../Loader";
 import { useGetCompanyByIdQuery } from "../../features/challengeApi/challengeApi";
+import { StyledBoxRoot } from "../../style/root";
 
 const AuthGuardian = (props) => {
   const dispatch = useDispatch();
@@ -36,7 +37,17 @@ const AuthGuardian = (props) => {
     }
   }, [data]);
 
-  return <>{isLoading ? <Loader /> : <>{props?.children}</>}</>;
+  return (
+    <>
+      {isLoading ? (
+        <StyledBoxRoot>
+          <Loader />
+        </StyledBoxRoot>
+      ) : (
+        <StyledBoxRoot ownerState={data}>{props?.children}</StyledBoxRoot>
+      )}
+    </>
+  );
 };
 
 AuthGuardian.propTypes = {

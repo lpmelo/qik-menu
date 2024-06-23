@@ -10,7 +10,7 @@ import {
   StyledSearchBox,
   StyledMenuContentContainer,
 } from "./style";
-import CardHeaderCarousel from "./components/CardHeaderCarousel";
+import CardItems from "./components/CardItems";
 
 const Menu = () => {
   const { backgroundColour, primaryColour } = useSelector(
@@ -35,11 +35,8 @@ const Menu = () => {
           />
         </StyledSearchBox>
         <StyledMenuContentContainer container item xs={12} spacing={3}>
-          <Grid item xs={8}>
-            <Card>
-              <CardHeaderCarousel sections={data?.sections} />
-              <CardContent></CardContent>
-            </Card>
+          <Grid maxHeight={"100%"} pb={"24px"} item xs={8}>
+            <CardItems data={data} />
           </Grid>
           <Grid item xs={4}>
             <Card>
