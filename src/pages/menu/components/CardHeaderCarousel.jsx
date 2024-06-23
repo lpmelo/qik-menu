@@ -1,20 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import PropType from "prop-types";
 import {
-  StyledAvatar,
+  StyledItemBox,
   StyledCardHeader,
   StyledItemContainer,
   StyledTypography,
 } from "./style";
-import { useSelector } from "react-redux";
 
 const CardHeaderCarousel = ({ sections }) => {
-    const {primaryColour} = useSelector((state)=> state.webSettings);
+  const { primaryColour } = useSelector((state) => state.webSettings);
 
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleClickItemContainer = (id) => {
+  const handleClickItem = (id) => {
     setSelectedItem(id);
+  };
+
+  const selectFirstItem = () => {
+    if (sections?.length) {
+      handleClickItem(sections[0]?.id);
+    }
   };
 
   const verifyIfItemIsSelected = (id) => {
@@ -26,23 +32,29 @@ const CardHeaderCarousel = ({ sections }) => {
     return false;
   };
 
+  useEffect(() => {
+    if (sections?.length) {
+      selectFirstItem();
+    }
+  }, [sections]);
+
   return (
     <StyledCardHeader>
       {sections?.length ? (
         sections.map((section) => {
           return (
             <StyledItemContainer
-              onClick={() => handleClickItemContainer(section?.id)}
+              onClick={() => handleClickItem(section?.id)}
               selected={verifyIfItemIsSelected(section?.id)}
               primaryColor={primaryColour}
               key={section?.id}
             >
-              <StyledAvatar
+              <StyledItemBox
                 bgImage={section?.images[0]?.image}
                 primaryColor={primaryColour}
                 selected={verifyIfItemIsSelected(section?.id)}
               />
-              <StyledTypography primaryColor={primaryColour} selected={verifyIfItemIsSelected(section?.id)}>
+              <StyledTypography selected={verifyIfItemIsSelected(section?.id)}>
                 {section?.name}
               </StyledTypography>
             </StyledItemContainer>

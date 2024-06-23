@@ -36,7 +36,7 @@ const StyledItemContainer = forwardRef(
   )
 );
 
-const StyledAvatarRoot = styled(Box)(({ theme, ownerState }) => {
+const StyledItemBoxRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette } = theme;
   const { bgImage, primaryColor, selected } = ownerState;
   const borderColor = primaryColor ? primaryColor : palette.primary.main;
@@ -56,9 +56,9 @@ const StyledAvatarRoot = styled(Box)(({ theme, ownerState }) => {
   };
 });
 
-const StyledAvatar = forwardRef(
+const StyledItemBox = forwardRef(
   ({ bgImage, primaryColor, selected, ...rest }, ref) => (
-    <StyledAvatarRoot
+    <StyledItemBoxRoot
       ref={ref}
       ownerState={{ bgImage, primaryColor, selected }}
       {...rest}
@@ -91,9 +91,9 @@ StyledItemContainer.propTypes = {
   primaryColor: PropType.string,
 };
 
-StyledAvatar.displayName = "StyledAvatar";
+StyledItemBox.displayName = "StyledItemBox";
 
-StyledAvatar.propTypes = {
+StyledItemBox.propTypes = {
   bgImage: PropType.string,
   primaryColor: PropType.string,
   selected: PropType.bool,
@@ -108,6 +108,6 @@ StyledTypography.propTypes = {
 export {
   StyledCardHeader,
   StyledItemContainer,
-  StyledAvatar,
+  StyledItemBox,
   StyledTypography,
 };
