@@ -232,6 +232,7 @@ const StyledAddButtonBoxRoot = styled(Box)(({ theme, ownerState }) => {
     },
     "& .MuiButton-root:hover": {
       borderColor: "unset",
+      backgroundColor: primaryColor ? primaryColor : palette.primary.main,
     },
   };
 });

@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import PropType from "prop-types";
 import { Button, IconButton } from "@mui/material";
 import { AddCircle, RemoveCircle } from "@mui/icons-material";
+import { addItemOnBasket } from "../../../../features/menu/menuSlice";
 import AdditionalItem from "../AdditionalItem";
 import DefaultDialog from "../../../../components/Dialog";
+import { formatToBRL } from "../../../../util/util";
 import {
   StyledAddButtonBox,
   StyledAdditionalContent,
@@ -18,9 +21,9 @@ import {
   StyledTypography,
   dialogContentStyle,
 } from "./style";
-import { formatToBRL } from "../../../../util/util";
 
 const ItemModal = ({ open, onClose, selectedItem, bgColor, primaryColor }) => {
+  const dispatch = useDispatch();
   const [counter, setCounter] = useState(1);
 
   const returnItemImagePath = (item) => {
@@ -43,6 +46,17 @@ const ItemModal = ({ open, onClose, selectedItem, bgColor, primaryColor }) => {
 
   const handleClickAdd = () => {
     setCounter((previous) => previous + 1);
+  };
+
+  const handleClickAddToBasket = () => {
+    const basketItem = {
+      id: selectedItem.id,
+      name: selectedItem.name,
+      quantity: counter,
+      price: selectedItem.price * counter,
+    };
+
+    dispatch(addItemOnBasket(basketItem));
   };
 
   return (
@@ -96,7 +110,10 @@ const ItemModal = ({ open, onClose, selectedItem, bgColor, primaryColor }) => {
             </IconButton>
           </StyledCounterBox>
           <StyledAddButtonBox primaryColor={primaryColor}>
-            <Button variant="outlined">{`Adicionar ao pedido - ${formatToBRL(
+            <Button
+              variant="outlined"
+              onClick={handleClickAddToBasket}
+            >{`Adicionar ao pedido - ${formatToBRL(
               selectedItem?.price * counter
             )}`}</Button>
           </StyledAddButtonBox>
