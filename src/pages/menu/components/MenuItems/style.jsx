@@ -5,6 +5,9 @@ import { Box, Typography, styled } from "@mui/material";
 const StyledItemBoxRoot = styled(Box)(() => {
   return {
     width: "100%",
+    cursor: "pointer",
+    "&:hover": { transform: "scale(1.02)", transition: "transform 300ms" },
+    "&:active": { transform: "scale(1)", transition: "transform 300ms" },
   };
 });
 

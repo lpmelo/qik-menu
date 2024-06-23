@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
-import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useGetAllMenusQuery } from "../../features/challengeApi/challengeApi";
 import AppBar from "../../components/AppBar";
+import CardItems from "./components/CardItems";
+import DefaultCard from "../../components/Card";
 import {
   StyledScreenContainer,
   StyledContentContainer,
@@ -10,7 +12,6 @@ import {
   StyledSearchBox,
   StyledMenuContentContainer,
 } from "./style";
-import CardItems from "./components/CardItems";
 
 const Menu = () => {
   const { backgroundColour, primaryColour } = useSelector(
@@ -39,22 +40,20 @@ const Menu = () => {
             <CardItems data={data} />
           </Grid>
           <Grid item xs={4}>
-            <Card>
-              <CardHeader
-                title={
-                  <Typography
-                    fontFamily={"Roboto"}
-                    fontSize="24px"
-                    color="#464646"
-                    fontWeight={500}
-                  >
-                    Carrinho
-                  </Typography>
-                }
-                sx={{ backgroundColor: "#F8F9FA" }}
-              />
-              <CardContent>Seu carrinho está vazio</CardContent>
-            </Card>
+            <DefaultCard
+              cardHeaderProps={{ sx: { backgroundColor: "#F8F9FA" } }}
+              typographyProps={{ color: "#464646", fontSize: "24px" }}
+              title={"Carrinho"}
+            >
+              <Typography
+                fontFamily="Roboto"
+                fontWeight={400}
+                fontSize="16px"
+                color="#464646"
+              >
+                Seu carrinho está vazio
+              </Typography>
+            </DefaultCard>
           </Grid>
         </StyledMenuContentContainer>
       </StyledContentContainer>
