@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import PropType from "prop-types";
-import { Box, styled } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 
 const StyledItemBoxRoot = styled(Box)(() => {
   return {
@@ -11,6 +11,8 @@ const StyledItemBoxRoot = styled(Box)(() => {
 const StyledItemBox = forwardRef(({ ...rest }, ref) => (
   <StyledItemBoxRoot ref={ref} {...rest} />
 ));
+
+StyledItemBox.displayName = "StyledItemBox";
 
 const StyledItemDetailsBoxRoot = styled(Box)(() => {
   return {
@@ -25,6 +27,8 @@ const StyledItemDetailsBoxRoot = styled(Box)(() => {
 const StyledItemDetailsBox = forwardRef(({ ...rest }, ref) => (
   <StyledItemDetailsBoxRoot ref={ref} {...rest} />
 ));
+
+StyledItemDetailsBox.displayName = "StyledItemDetailsBox";
 
 const StyledItemImageBoxRoot = styled(Box)(({ ownerState }) => {
   const { bgImage } = ownerState;
@@ -47,9 +51,50 @@ const StyledItemImageBox = forwardRef(({ bgImage, ...rest }, ref) => (
   <StyledItemImageBoxRoot ref={ref} ownerState={{ bgImage }} {...rest} />
 ));
 
-StyledItemBox.displayName = "StyledItemBox";
-StyledItemDetailsBox.displayName = "StyledItemDetailsBox";
 StyledItemImageBox.displayName = "StyledItemImageBox";
 StyledItemImageBox.propTypes = { bgImage: PropType.string };
 
-export { StyledItemBox, StyledItemDetailsBox, StyledItemImageBox };
+const StyledItemInfoBoxRoot = styled(Box)(() => {
+  return {
+    width: "70%",
+    fontFamily: "Roboto",
+    fontSize: "16px",
+  };
+});
+
+const StyledItemInfoBox = forwardRef(({ ...rest }, ref) => (
+  <StyledItemInfoBoxRoot ref={ref} {...rest} />
+));
+
+StyledItemInfoBox.displayName = "StyledItemInfoBox";
+
+const StyledTypographyRoot = styled(Typography)(({ ownerState }) => {
+  const { lightColor } = ownerState;
+
+  return {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    fontSize: "16px",
+    maxWidth: "calc(100% - 38px)",
+    color: lightColor ? "#464646" : "#121212",
+  };
+});
+
+const StyledTypography = forwardRef(({ lightColor, ...rest }, ref) => (
+  <StyledTypographyRoot ref={ref} ownerState={{ lightColor }} {...rest} />
+));
+
+StyledTypography.displayName = "StyledTypography";
+
+StyledTypography.propTypes = {
+  lightColor: PropType.bool,
+};
+
+export {
+  StyledItemBox,
+  StyledItemDetailsBox,
+  StyledItemImageBox,
+  StyledItemInfoBox,
+  StyledTypography,
+};
