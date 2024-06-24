@@ -28,6 +28,44 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [filteredData, setFilteredData] = useState({});
+  const [filterValue, setFilterValue] = useState("");
+
+  const handleChangeFilter = (e) => {
+    setFilterValue(e.target.value);
+    let newFilteredSections = data?.sections.filter((section) => {
+      if (e.target.value) {
+        if (section?.items?.length) {
+          const findedMenuItem = section.items.find((menuItem) =>
+            menuItem.name.includes(e.target.value)
+          );
+
+          if (findedMenuItem) {
+            return true;
+          }
+        }
+        return false;
+      }
+      return true;
+    });
+
+    let formattedSections = newFilteredSections.map((section) => {
+      let newSection = section;
+      const newItemsArray = newSection.items.filter((menuItem) =>
+        menuItem.name.includes(e.target.value)
+      );
+
+      newSection = {
+        ...section,
+        items: newItemsArray,
+      };
+
+      return newSection;
+    });
+
+    const newFilteredData = { ...data, sections: formattedSections };
+
+    setFilteredData(newFilteredData);
+  };
 
   const handleClickItem = (itemInfo) => {
     setSelectedItem(itemInfo);
@@ -57,6 +95,8 @@ const Menu = () => {
             placeholder="Procurar Itens"
             inputIcon={<Search />}
             primaryColor={primaryColour}
+            value={filterValue}
+            onChange={handleChangeFilter}
           />
         </StyledSearchBox>
         <StyledMenuContentContainer container item xs={12} spacing={3}>
