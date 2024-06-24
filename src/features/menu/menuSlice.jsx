@@ -81,7 +81,7 @@ const menuSlice = createSlice({
       }
     },
     resetBasket: (state) => {
-      state.basket = initialState;
+      state.basket = initialState.basket;
     },
   },
 });

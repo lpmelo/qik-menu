@@ -24,6 +24,7 @@ import {
 
 const ItemModal = ({
   open,
+  openMobileBasket,
   onClose,
   selectedItem,
   bgColor,
@@ -66,6 +67,9 @@ const ItemModal = ({
 
     dispatch(addItemOnBasket(basketItem));
     handleCloseModal();
+    if (isMobile) {
+      openMobileBasket();
+    }
   };
 
   return (
@@ -136,6 +140,7 @@ const ItemModal = ({
 ItemModal.propTypes = {
   open: PropType.bool,
   onClose: PropType.func,
+  openMobileBasket: PropType.func,
   selectedItem: PropType.object,
   bgColor: PropType.string,
   primaryColor: PropType.string,

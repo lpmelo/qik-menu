@@ -26,6 +26,7 @@ StyledScreenContainer.propTypes = {
 };
 
 const StyledContentContainerRoot = styled(Container)(({ ownerState }) => ({
+  position: ownerState?.isMobile ? "relative" : "unset",
   height: "calc(100% - 202px)",
   paddingLeft: ownerState?.isMobile ? "0px !important" : "",
   paddingRight: ownerState?.isMobile ? "0px !important" : "",
@@ -117,15 +118,10 @@ StyledIconTextField.propTypes = {
   inputIcon: PropType.object,
 };
 
-const MobileBox = styled(Box)(() => ({
-  paddingTop: "16px",
-}));
-
 export {
   StyledScreenContainer,
   StyledContentContainer,
   StyledSearchBox,
   StyledIconTextField,
   StyledMenuContentContainer,
-  MobileBox,
 };

@@ -13,10 +13,10 @@ import {
   StyledIconTextField,
   StyledSearchBox,
   StyledMenuContentContainer,
-  MobileBox,
 } from "./style";
 import BasketBox from "./components/BasketBox";
 import { useIsMobile } from "../../hooks/useIsMobile/useIsMobile";
+import MobileBasket from "./components/MobileBasket";
 
 const Menu = () => {
   const { backgroundColour, primaryColour } = useSelector(
@@ -28,6 +28,7 @@ const Menu = () => {
   const { data } = useGetAllMenusQuery();
 
   const [open, setOpen] = useState(false);
+  const [openMobileBasket, setOpenMobileBasket] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [filteredData, setFilteredData] = useState({});
   const [filterValue, setFilterValue] = useState("");
@@ -80,6 +81,14 @@ const Menu = () => {
     setOpen(false);
   };
 
+  const handleClickBasketButton = () => {
+    setOpenMobileBasket(true);
+  };
+
+  const handleCloseMobileBasket = () => {
+    setOpenMobileBasket(false);
+  };
+
   useEffect(() => {
     if (data) {
       setFilteredData(data);
@@ -108,6 +117,13 @@ const Menu = () => {
             <Box pt={"16px"}>
               <CardItems data={filteredData} onClickItem={handleClickItem} />
             </Box>
+            <MobileBasket
+              open={openMobileBasket}
+              onClickOpenBasket={handleClickBasketButton}
+              onClose={handleCloseMobileBasket}
+              bgColor={backgroundColour}
+              primaryColor={primaryColour}
+            />
           </>
         ) : (
           <>
@@ -153,6 +169,7 @@ const Menu = () => {
       </StyledContentContainer>
       <ItemModal
         open={open}
+        openMobileBasket={handleClickBasketButton}
         onClose={handleCloseItemModal}
         selectedItem={selectedItem}
         bgColor={backgroundColour}
