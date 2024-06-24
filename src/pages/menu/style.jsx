@@ -107,15 +107,22 @@ StyledMenuContentContainer.propTypes = {
   item: PropType.bool,
 };
 
-const StyledIconTextField = forwardRef(({ primaryColor, ...rest }, ref) => (
-  <StyledIconTextFieldRoot ref={ref} ownerState={{ primaryColor }} {...rest} />
-));
+const StyledIconTextField = forwardRef(
+  ({ primaryColor, inputIcon, ...rest }, ref) => (
+    <StyledIconTextFieldRoot
+      ref={ref}
+      ownerState={{ primaryColor }}
+      inputIcon={inputIcon}
+      {...rest}
+    />
+  )
+);
 
 StyledIconTextField.displayName = "StyledIconTextField";
 
 StyledIconTextField.propTypes = {
   primaryColor: PropType.string,
-  inputIcon: PropType.object,
+  inputIcon: PropType.element,
 };
 
 export {

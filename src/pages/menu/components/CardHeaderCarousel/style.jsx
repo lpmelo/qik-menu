@@ -3,7 +3,14 @@ import { Box, Container, Typography, styled } from "@mui/material";
 import PropType from "prop-types";
 
 const StyledContainerHeaderRoot = styled(Container)(() => {
-  return { display: "flex", padding: "20px 0px 24px 16px", maxHeight: "190px" };
+  return {
+    display: "flex",
+    padding: "20px 0px 24px 16px",
+    maxHeight: "190px",
+    maxWidth: "100%",
+    overflowX: "auto",
+    overflowY: "hidden",
+  };
 });
 
 const StyledContainerHeader = forwardRef(({ ...rest }, ref) => (

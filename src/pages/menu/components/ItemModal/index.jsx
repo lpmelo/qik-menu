@@ -113,7 +113,7 @@ const ItemModal = ({
         </StyledItemDetailsBox>
         <StyledButtonsBox>
           <StyledCounterBox primaryColor={primaryColor}>
-            <IconButton onClick={handleClickRemove}>
+            <IconButton onClick={handleClickRemove} disabled={counter === 1}>
               <RemoveCircle />
             </IconButton>
             <StyledTypography title mr={2} ml={2}>

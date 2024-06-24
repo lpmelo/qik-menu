@@ -1,29 +1,27 @@
 import { InputAdornment, TextField } from "@mui/material";
 import PropType from "prop-types";
 
-const IconTextField = (props) => {
+const IconTextField = ({ inputIcon, inputIconPosition, ...rest }) => {
   return (
     <TextField
       InputProps={
-        props?.inputIcon && {
+        inputIcon && {
           startAdornment: (
             <InputAdornment
-              position={
-                props?.inputIconPosition ? props?.inputIconPosition : "start"
-              }
+              position={inputIconPosition ? inputIconPosition : "start"}
             >
-              {props?.inputIcon}
+              {inputIcon}
             </InputAdornment>
           ),
         }
       }
-      {...props}
+      {...rest}
     />
   );
 };
 
 IconTextField.propTypes = {
-  inputIcon: PropType.object,
+  inputIcon: PropType.element,
   inputIconPosition: PropType.oneOf(["start", "end"]),
 };
 

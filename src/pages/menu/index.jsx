@@ -115,7 +115,11 @@ const Menu = () => {
               />
             </StyledSearchBox>
             <Box pt={"16px"}>
-              <CardItems data={filteredData} onClickItem={handleClickItem} />
+              <CardItems
+                data={filteredData}
+                onClickItem={handleClickItem}
+                primaryColor={primaryColour}
+              />
             </Box>
             <MobileBasket
               open={openMobileBasket}
@@ -138,7 +142,11 @@ const Menu = () => {
             </StyledSearchBox>
             <StyledMenuContentContainer container item xs={12} spacing={3}>
               <Grid maxHeight={"100%"} pb={"24px"} item xs={8}>
-                <CardItems data={filteredData} onClickItem={handleClickItem} />
+                <CardItems
+                  data={filteredData}
+                  onClickItem={handleClickItem}
+                  primaryColor={primaryColour}
+                />
               </Grid>
               <Grid item xs={4}>
                 <DefaultCard

@@ -10,11 +10,12 @@ const DefaultAccordion = ({
   accordionDetailsProps,
   summaryContent,
   detailsContent,
+  primaryColor,
 }) => {
   return (
     <Accordion {...accordionProps}>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon sx={{ color: primaryColor }} />}
         {...accordionSummaryProps}
       >
         {summaryContent}
@@ -32,6 +33,7 @@ DefaultAccordion.propTypes = {
   accordionDetailsProps: PropType.object,
   summaryContent: PropType.element,
   detailsContent: PropType.element,
+  primaryColor: PropType.string,
 };
 
 export default DefaultAccordion;

@@ -5,7 +5,7 @@ import DefaultAccordion from "../../../../components/Accordion";
 import MenuItems from "../MenuItems";
 import { StyledCard, StyledContentBox } from "./style";
 
-const CardItems = ({ data, isLoading, onClickItem }) => {
+const CardItems = ({ data, isLoading, onClickItem, primaryColor }) => {
   const returnItemsAccordions = () => {
     if (data?.sections?.length) {
       return data?.sections.map((section) => (
@@ -23,6 +23,7 @@ const CardItems = ({ data, isLoading, onClickItem }) => {
           detailsContent={
             <MenuItems menuItems={section.items} onClickItem={onClickItem} />
           }
+          primaryColor={primaryColor}
         />
       ));
     }
@@ -42,6 +43,7 @@ CardItems.propTypes = {
   data: PropTypes.object,
   isLoading: PropTypes.bool,
   onClickItem: PropTypes.func,
+  primaryColor: PropTypes.string,
 };
 
 export default CardItems;

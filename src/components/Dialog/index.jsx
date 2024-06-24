@@ -64,9 +64,14 @@ const DefaultDialog = ({
         <></>
       )}
 
-      <DialogContent dividers {...dialogContentProps}>
-        {children}
-      </DialogContent>
+      {children ? (
+        <DialogContent dividers {...dialogContentProps}>
+          {children}
+        </DialogContent>
+      ) : (
+        <></>
+      )}
+
       {actionContent ? (
         <DialogActions {...dialogActionsProps}>{actionContent}</DialogActions>
       ) : (
