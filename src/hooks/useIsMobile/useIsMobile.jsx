@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
+  const returnData = {
+    isMobile,
+  };
+
+  const handleResize = () => {
+    const isMobile = window.innerWidth <= 768;
+    setIsMobile(isMobile);
+  };
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
-  return isMobile;
+  return returnData;
 };
 
 export { useIsMobile };

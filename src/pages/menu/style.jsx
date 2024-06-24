@@ -25,37 +25,41 @@ StyledScreenContainer.propTypes = {
   bgColor: PropType.string,
 };
 
-const StyledContentContainerRoot = styled(Container)(() => ({
+const StyledContentContainerRoot = styled(Container)(({ ownerState }) => ({
   height: "calc(100% - 202px)",
+  paddingLeft: ownerState?.isMobile ? "0px !important" : "",
+  paddingRight: ownerState?.isMobile ? "0px !important" : "",
   paddingBottom: "5px",
 }));
 
-const StyledContentContainer = forwardRef(({ ...rest }, ref) => (
-  <StyledContentContainerRoot ref={ref} {...rest} />
+const StyledContentContainer = forwardRef(({ isMobile, ...rest }, ref) => (
+  <StyledContentContainerRoot ref={ref} ownerState={{ isMobile }} {...rest} />
 ));
 
 StyledContentContainer.displayName = "StyledContentContainer";
 
 StyledContentContainer.propTypes = {
-  container: PropType.bool,
-  item: PropType.bool,
+  isMobile: PropType.bool,
 };
 
-const StyledSearchBoxRoot = styled(Box)(() => ({
+const StyledSearchBoxRoot = styled(Box)(({ ownerState }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "100%",
+  width: ownerState?.isMobile ? "calc(100% - 13px)" : "100%",
   height: "56px",
-  padding: "1px 0px",
-  gap: "16px",
+  padding: ownerState?.isMobile ? "5px" : "1px 0px",
 }));
 
-const StyledSearchBox = forwardRef(({ ...rest }, ref) => (
-  <StyledSearchBoxRoot ref={ref} {...rest} />
+const StyledSearchBox = forwardRef(({ isMobile, ...rest }, ref) => (
+  <StyledSearchBoxRoot ref={ref} ownerState={{ isMobile }} {...rest} />
 ));
 
 StyledSearchBox.displayName = "StyledSearchBox";
+
+StyledSearchBox.propTypes = {
+  isMobile: PropType.bool,
+};
 
 const StyledIconTextFieldRoot = styled(IconTextField)(
   ({ theme, ownerState }) => {
@@ -113,10 +117,15 @@ StyledIconTextField.propTypes = {
   inputIcon: PropType.object,
 };
 
+const MobileBox = styled(Box)(() => ({
+  paddingTop: "16px",
+}));
+
 export {
   StyledScreenContainer,
   StyledContentContainer,
   StyledSearchBox,
   StyledIconTextField,
   StyledMenuContentContainer,
+  MobileBox,
 };

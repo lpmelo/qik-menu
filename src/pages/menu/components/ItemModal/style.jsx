@@ -6,25 +6,34 @@ const dialogContentStyle = { p: "0px !important", border: "unset !important" };
 
 const StyledBoxModalContentRoot = styled(Box)(({ theme, ownerState }) => {
   const { palette } = theme;
-  const { bgColor } = ownerState;
+  const { bgColor, isMobile } = ownerState;
 
   const backgroundColor = bgColor ? bgColor : palette.background.default;
 
   return {
     position: "relative",
-    width: "480px",
-    height: "720px",
+    width: isMobile ? "100%" : "480px",
+    height: isMobile ? "100%" : "720px",
     backgroundColor: backgroundColor,
   };
 });
 
-const StyledBoxModalContent = forwardRef(({ bgColor, ...rest }, ref) => (
-  <StyledBoxModalContentRoot {...rest} ownerState={{ bgColor }} ref={ref} />
-));
+const StyledBoxModalContent = forwardRef(
+  ({ bgColor, isMobile, ...rest }, ref) => (
+    <StyledBoxModalContentRoot
+      {...rest}
+      ownerState={{ bgColor, isMobile }}
+      ref={ref}
+    />
+  )
+);
 
 StyledBoxModalContent.displayName = "StyledBoxModalContent";
 
-StyledBoxModalContent.propTypes = { bgColor: PropType.string };
+StyledBoxModalContent.propTypes = {
+  bgColor: PropType.string,
+  isMobile: PropType.bool,
+};
 
 const StyledImageBoxRoot = styled(Box)(({ ownerState }) => {
   const { bgImage } = ownerState;

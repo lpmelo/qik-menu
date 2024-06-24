@@ -22,7 +22,14 @@ import {
   dialogContentStyle,
 } from "./style";
 
-const ItemModal = ({ open, onClose, selectedItem, bgColor, primaryColor }) => {
+const ItemModal = ({
+  open,
+  onClose,
+  selectedItem,
+  bgColor,
+  primaryColor,
+  isMobile,
+}) => {
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(1);
 
@@ -70,8 +77,9 @@ const ItemModal = ({ open, onClose, selectedItem, bgColor, primaryColor }) => {
       }}
       closeIconButton
       closeIconColor={{ primary: primaryColor, background: bgColor }}
+      fullScreen={isMobile}
     >
-      <StyledBoxModalContent bgColor={bgColor}>
+      <StyledBoxModalContent bgColor={bgColor} isMobile={isMobile}>
         <StyledImageBox bgImage={returnItemImagePath(selectedItem)} />
         <StyledItemDetailsBox bgColor={bgColor}>
           <StyledTitleBox>
@@ -131,6 +139,7 @@ ItemModal.propTypes = {
   selectedItem: PropType.object,
   bgColor: PropType.string,
   primaryColor: PropType.string,
+  isMobile: PropType.bool,
 };
 
 export default ItemModal;

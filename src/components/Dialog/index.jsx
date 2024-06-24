@@ -23,6 +23,7 @@ const DefaultDialog = ({
   closeIconColor,
   closeIconProps,
   actionContent,
+  fullScreen,
   children,
 }) => {
   const webSettings = useSelector((state) => state.webSettings);
@@ -40,6 +41,7 @@ const DefaultDialog = ({
       onClose={onClose}
       open={open}
       ownerState={{ webSettings }}
+      fullScreen={fullScreen}
       {...dialogProps}
     >
       {title ? (
@@ -87,6 +89,7 @@ DefaultDialog.propTypes = {
   closeIconColor: PropType.object,
   closeIconProps: PropType.object,
   actionContent: PropType.element,
+  fullScreen: PropType.bool,
   children: PropType.element,
 };
 
