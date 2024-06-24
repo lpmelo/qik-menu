@@ -41,7 +41,7 @@ const Menu = () => {
       if (e.target.value) {
         if (section?.items?.length) {
           const findedMenuItem = section.items.find((menuItem) =>
-            menuItem.name.includes(e.target.value)
+            menuItem.name.toLowerCase().includes(e.target.value.toLowerCase())
           );
 
           if (findedMenuItem) {
@@ -56,7 +56,7 @@ const Menu = () => {
     let formattedSections = newFilteredSections.map((section) => {
       let newSection = section;
       const newItemsArray = newSection.items.filter((menuItem) =>
-        menuItem.name.includes(e.target.value)
+        menuItem.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
 
       newSection = {
