@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import PropType from "prop-types";
 import { Box, Typography, styled } from "@mui/material";
+import noImage from "../../../../assets/images/menu/no-image.jpg";
 
 const dialogContentStyle = { p: "0px !important", border: "unset !important" };
 
@@ -40,7 +41,7 @@ const StyledImageBoxRoot = styled(Box)(({ ownerState }) => {
 
   const backgroundImage = bgImage
     ? `url(${bgImage})`
-    : "url(src/assets/images/menu/no-image.jpg)";
+    : `url(${noImage})`;
 
   return {
     height: "320px",

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import PropType from "prop-types";
 import { formatToBRL } from "../../../../util/util";
+import noImage from "../../../../assets/images/menu/no-image.jpg";
 import {
   StyledBadge,
   StyledItemBox,
@@ -19,7 +20,7 @@ const MenuItems = ({ menuItems, onClickItem }) => {
     if (item?.images?.length) {
       return item?.images[0].image;
     }
-    return "src/assets/images/menu/no-image.jpg";
+    return noImage;
   };
 
   const verifyBadge = (itemId) => {

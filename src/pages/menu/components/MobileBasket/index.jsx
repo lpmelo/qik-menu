@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PropType from "prop-types";
 import { Button } from "@mui/material";
 import DefaultDialog from "../../../../components/Dialog";
-import { StyledAddButtonBox } from "./style";
+import { StyledAddButtonBox, StyledButton } from "./style";
 import BasketBox from "../BasketBox";
 import { resetBasket } from "../../../../features/menu/menuSlice";
 
@@ -29,11 +29,13 @@ const MobileBasket = ({
   return (
     <>
       {basket?.items?.length ? (
-        <StyledAddButtonBox primaryColor={primaryColor}>
-          <Button variant="outlined" onClick={onClickOpenBasket}>
-            {returnButtonLabel()}
-          </Button>
-        </StyledAddButtonBox>
+        <StyledButton
+          variant="outlined"
+          onClick={onClickOpenBasket}
+          primaryColor={primaryColor}
+        >
+          {returnButtonLabel()}
+        </StyledButton>
       ) : (
         <></>
       )}
