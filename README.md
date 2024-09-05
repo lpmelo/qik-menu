@@ -4,7 +4,7 @@ Bem-vindo ao projeto Qik-menu criado com React e Vite! Este guia vai te ajudar a
 
 ## 🚨 ATENÇÃO
 
-Foram utilizados os endpoints para o fetch dos dados, baseado na url:
+Foram utilizados os endpoints para o fetch dos dados, baseado na url: - teste
 
 ```bash
 https://cdn-dev.preoday.com/challenge
