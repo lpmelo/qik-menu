@@ -1,6 +1,6 @@
 # 🚀 Projeto Qik-Menu
 
-Bem-vindo ao projeto Qik-menu criado com React e Vite! Este guia vai te ajudar a configurar e rodar o projeto rapidamente.
+Bem-vindo ao projeto Qik-menu criado com React e Vite! Este guia vai te ajudar a configurar e rodar o projeto rapidamente. teste
 
 ## 🚨 ATENÇÃO
 
